@@ -30,7 +30,7 @@ const App = ({ signOut }) => {
     const notesFromAPI = apiData.data.listNotes.items;
     await Promise.all(
       notesFromAPI.map(async (note) => {
-        if (note.image) {
+        if(note.image){
           const url = await Storage.get(note.name);
           note.image = url;
         }
@@ -47,6 +47,7 @@ const App = ({ signOut }) => {
     const data = {
       name: form.get("name"),
       description: form.get("description"),
+      image: image.name,
     };
     
     if(!!data.image) await Storage.put(data.name, image);
